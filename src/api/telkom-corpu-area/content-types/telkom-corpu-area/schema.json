@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "telkom_corpu_areas",
+  "info": {
+    "singularName": "telkom-corpu-area",
+    "pluralName": "telkom-corpu-areas",
+    "displayName": "Telkom Corpu Area"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
