@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buildings",
+  "info": {
+    "singularName": "building",
+    "pluralName": "buildings",
+    "displayName": "Building"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "telkom_corpu_area_parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::telkom-corpu-area.telkom-corpu-area",
+      "inversedBy": "buildings_childs"
+    },
+    "category_functionality": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "maps_photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "background_360_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "facilities_childs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::facility.facility",
+      "mappedBy": "building_parent"
+    },
+    "first_camera_rotation_value": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 360
+    },
+    "content_photos": {
+      "type": "component",
+      "component": "asset.content-photo",
+      "repeatable": true
+    },
+    "navigations": {
+      "type": "component",
+      "component": "asset.navigation",
+      "repeatable": true
+    }
+  }
+}

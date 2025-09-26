@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_asset_content_photos",
+  "info": {
+    "displayName": "Content Photo",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "photo_title": {
+      "type": "string",
+      "required": true
+    },
+    "content_images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content_description": {
+      "type": "text",
+      "required": true
+    },
+    "hotspot_configuration": {
+      "type": "component",
+      "component": "transform.hotspot-position",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

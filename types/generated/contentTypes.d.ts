@@ -107,43 +107,6 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface AdminAuditLog extends Struct.CollectionTypeSchema {
-  collectionName: 'strapi_audit_logs';
-  info: {
-    displayName: 'Audit Log';
-    pluralName: 'audit-logs';
-    singularName: 'audit-log';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
-      Schema.Attribute.Private;
-    payload: Schema.Attribute.JSON;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-  };
-}
-
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -410,6 +373,152 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
+  collectionName: 'buildings';
+  info: {
+    displayName: 'Building';
+    pluralName: 'buildings';
+    singularName: 'building';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    background_360_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    category_functionality: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::category.category'
+    >;
+    content_photos: Schema.Attribute.Component<'asset.content-photo', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    facilities_childs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::facility.facility'
+    >;
+    first_camera_rotation_value: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 360;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::building.building'
+    > &
+      Schema.Attribute.Private;
+    maps_photo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    navigations: Schema.Attribute.Component<'asset.navigation', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    telkom_corpu_area_parent: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::telkom-corpu-area.telkom-corpu-area'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    displayName: 'Category';
+    pluralName: 'categories';
+    singularName: 'category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    functionality: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
+  collectionName: 'facilities';
+  info: {
+    displayName: 'Facility';
+    pluralName: 'facilities';
+    singularName: 'facility';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    background_360_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    bookable_status: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    building_parent: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::building.building'
+    >;
+    category_functionality: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::category.category'
+    >;
+    content_photos: Schema.Attribute.Component<'asset.content-photo', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    facility_detail: Schema.Attribute.Component<'asset.facility-detail', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 15;
+        },
+        number
+      >;
+    first_camera_rotation_value: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 360;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::facility.facility'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    navigations: Schema.Attribute.Component<'asset.navigation', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTelkomCorpuAreaTelkomCorpuArea
   extends Struct.CollectionTypeSchema {
   collectionName: 'telkom_corpu_areas';
@@ -422,6 +531,15 @@ export interface ApiTelkomCorpuAreaTelkomCorpuArea
     draftAndPublish: true;
   };
   attributes: {
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    background_photo: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    bookable_status: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    buildings_childs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::building.building'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -431,7 +549,9 @@ export interface ApiTelkomCorpuAreaTelkomCorpuArea
       'api::telkom-corpu-area.telkom-corpu-area'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -942,12 +1062,14 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
-      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::building.building': ApiBuildingBuilding;
+      'api::category.category': ApiCategoryCategory;
+      'api::facility.facility': ApiFacilityFacility;
       'api::telkom-corpu-area.telkom-corpu-area': ApiTelkomCorpuAreaTelkomCorpuArea;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

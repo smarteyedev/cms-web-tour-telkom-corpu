@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_asset_navigations",
+  "info": {
+    "displayName": "Navigation",
+    "icon": "oneWay"
+  },
+  "options": {},
+  "attributes": {
+    "target_type": {
+      "type": "enumeration",
+      "enum": [
+        "BUILDING",
+        "FACILITY"
+      ]
+    },
+    "building_target": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::building.building",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "target_type"
+            },
+            "BUILDING"
+          ]
+        }
+      }
+    },
+    "facility_target": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::facility.facility",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "target_type"
+            },
+            "FACILITY"
+          ]
+        }
+      }
+    },
+    "hotspot_configuration": {
+      "type": "component",
+      "component": "transform.hotspot-position",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

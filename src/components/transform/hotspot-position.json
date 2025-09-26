@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_transform_hotspot_positions",
+  "info": {
+    "displayName": "Hotspot Position",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "hotspot_title": {
+      "type": "string",
+      "required": true
+    },
+    "hotspot_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "coordinate_x": {
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 1
+    },
+    "coordinate_y": {
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 1
+    }
+  },
+  "config": {}
+}

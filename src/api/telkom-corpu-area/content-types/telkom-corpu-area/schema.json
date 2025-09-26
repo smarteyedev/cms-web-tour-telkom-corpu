@@ -10,5 +10,38 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "background_photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "buildings_childs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::building.building",
+      "mappedBy": "telkom_corpu_area_parent"
+    },
+    "bookable_status": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    }
+  }
 }
