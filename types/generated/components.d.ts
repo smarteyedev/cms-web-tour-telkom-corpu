@@ -25,9 +25,8 @@ export interface AssetFacilityDetail extends Struct.ComponentSchema {
     icon: 'dashboard';
   };
   attributes: {
-    field: Schema.Attribute.String & Schema.Attribute.Required;
+    facility_detail: Schema.Attribute.String & Schema.Attribute.Required;
     icon: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
-    value: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

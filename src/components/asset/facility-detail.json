@@ -6,11 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "field": {
-      "type": "string",
-      "required": true
-    },
-    "value": {
+    "facility_detail": {
       "type": "string",
       "required": true
     },

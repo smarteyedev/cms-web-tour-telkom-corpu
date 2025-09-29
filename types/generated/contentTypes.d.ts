@@ -472,7 +472,6 @@ export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
     background_360_image: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
     bookable_status: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     building_parent: Schema.Attribute.Relation<
       'manyToOne',
