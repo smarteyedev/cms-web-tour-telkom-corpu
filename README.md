@@ -1,44 +1,122 @@
-# 🚀 Getting started with Strapi
+# 🚀 Panduan Menjalankan Project Strapi di Local
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+Dokumentasi ini menjelaskan langkah-langkah untuk men-setup dan menjalankan project **Strapi** setelah melakukan _clone_ dari repository Git.
 
-### `develop`
+## 📁 1. Clone Repository
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Clone repository Strapi ke local menggunakan perintah berikut:
 
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
+```bash
+git clone <url-repository>
+cd <nama-folder-project>
 ```
 
-### `build`
+## 🧩 2. Prasyarat
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+Sebelum menjalankan project, pastikan sistem kamu sudah memiliki:
 
+| Komponen     | Versi Disarankan                                      | Perintah untuk Cek |
+| ------------ | ----------------------------------------------------- | ------------------ |
+| **Node.js**  | v18.x atau v20.x                                      | `node -v`          |
+| **npm**      | v9.x ke atas                                          | `npm -v`           |
+| **Git**      | Terinstal                                             | `git --version`    |
+| **Database** | (Tergantung project: SQLite, PostgreSQL, MySQL, dll.) | -                  |
+
+> 💡 Jika belum terinstal Node.js, unduh versi LTS di [https://nodejs.org](https://nodejs.org).
+
+## ⚙️ 3. Instalasi Dependencies
+
+Jalankan perintah berikut untuk menginstal seluruh dependencies yang diperlukan:
+
+```bash
+npm install
 ```
+
+Atau jika project menggunakan **yarn**:
+
+```bash
+yarn install
+```
+
+## 🔑 4. Konfigurasi Environment
+
+Periksa apakah terdapat file `.env.example` pada root folder project.
+Jika ada, buat salinannya menjadi `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Kemudian sesuaikan isi `.env` sesuai dengan konfigurasi environment lokal kamu, terutama bagian koneksi database dan security keys.
+
+Contoh konfigurasi `.env` :
+
+```env
+# Server
+HOST=0.0.0.0
+PORT=1337
+
+# Secrets
+APP_KEYS=/QZjzgZbiCdj/e1A13odVA==,lCyaKGE5mjnjIX8bTeNvOg==,gTaW98k4nmJKr5pUQyHekQ==,fdXxLpztSI/6gNnvYj+3Gw==
+API_TOKEN_SALT=zXuixXm9TdNZf2M2UpY51A==
+ADMIN_JWT_SECRET=cZxs84oMVWK/gPSz2f8CsQ==
+TRANSFER_TOKEN_SALT=xma0h4DcqWYLGKcUwN6rLA==
+ENCRYPTION_KEY=JO1dhKTnfxJa2NKYB/jp4g==
+
+# Database
+DATABASE_CLIENT=sqlite
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_NAME=
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
+DATABASE_SSL=false
+DATABASE_FILENAME=.tmp/data.db
+JWT_SECRET=qBr8A8qPhVTo5mabMXLGBg==
+```
+
+## 🧱 5. Build Project
+
+Untuk mempersiapkan project sebelum dijalankan dalam mode production:
+
+```bash
 npm run build
-# or
-yarn build
 ```
 
-## ⚙️ Deployment
+## 🚀 6. Menjalankan Project
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+### Mode Development (auto reload)
+
+```bash
+npm run develop
+```
+
+### Mode Production
+
+```bash
+npm run start
+```
+
+## 🌐 7. Akses Aplikasi
+
+Setelah berhasil dijalankan, buka URL berikut di browser:
 
 ```
-yarn strapi deploy
+http://localhost:1337/admin
 ```
+
+Jika ini pertama kali dijalankan, kamu akan diminta membuat akun **admin Strapi**.
+
+## 🧰 8. Troubleshooting
+
+Jika muncul error seperti `Cannot find module` atau `Missing dependencies`, coba hapus cache dan lakukan instalasi ulang:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+Jika error masih muncul, periksa versi Node.js apakah sesuai dengan versi Strapi yang digunakan (biasanya Strapi v4/v5 membutuhkan Node.js ≥ 18).
 
 ## 📚 Learn more
 
@@ -48,14 +126,16 @@ yarn strapi deploy
 - [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
 - [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi).
+Your feedback and contributions are welcome!
 
 ## ✨ Community
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
+- [Discord](https://discord.strapi.io) - Chat with the Strapi community and core team.
+- [Forum](https://forum.strapi.io/) - Discuss, ask questions, and get feedback from other developers.
 - [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+**Dibuat oleh:** _Tim Developer_
+**Tanggal:** _15 Oktober 2025_
