@@ -15,12 +15,11 @@ cd <nama-folder-project>
 
 Sebelum menjalankan project, pastikan sistem kamu sudah memiliki:
 
-| Komponen     | Versi Disarankan                                      | Perintah untuk Cek |
-| ------------ | ----------------------------------------------------- | ------------------ |
-| **Node.js**  | v18.x atau v20.x                                      | `node -v`          |
-| **npm**      | v9.x ke atas                                          | `npm -v`           |
-| **Git**      | Terinstal                                             | `git --version`    |
-| **Database** | (Tergantung project: SQLite, PostgreSQL, MySQL, dll.) | -                  |
+| Komponen    | Versi Disarankan | Perintah untuk Cek |
+| ----------- | ---------------- | ------------------ |
+| **Node.js** | v20.18.0         | `node -v`          |
+| **npm**     | v10.8.2 ke atas  | `npm -v`           |
+| **Git**     | Terinstal        | `git --version`    |
 
 > 💡 Jika belum terinstal Node.js, unduh versi LTS di [https://nodejs.org](https://nodejs.org).
 

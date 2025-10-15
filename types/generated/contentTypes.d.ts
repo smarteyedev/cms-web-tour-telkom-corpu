@@ -386,6 +386,15 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
   attributes: {
     background_360_image: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
+    camera_pov: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 1;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     category_functionality: Schema.Attribute.Relation<
       'oneToOne',
       'api::category.category'
@@ -399,15 +408,6 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::facility.facility'
     >;
-    first_camera_rotation_value: Schema.Attribute.Decimal &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 360;
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -477,6 +477,15 @@ export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::building.building'
     >;
+    camera_pov: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 1;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     category_functionality: Schema.Attribute.Relation<
       'oneToOne',
       'api::category.category'
@@ -493,15 +502,6 @@ export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
         },
         number
       >;
-    first_camera_rotation_value: Schema.Attribute.Decimal &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 360;
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -539,6 +539,15 @@ export interface ApiTelkomCorpuAreaTelkomCorpuArea
       'oneToMany',
       'api::building.building'
     >;
+    camera_pov: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 1;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
