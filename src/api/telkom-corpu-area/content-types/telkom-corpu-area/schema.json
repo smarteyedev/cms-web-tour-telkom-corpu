@@ -17,13 +17,18 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
     },
     "address": {
       "type": "text",
       "required": true
     },
-    "background_photo": {
+    "thumbnail_name": {
+      "type": "string",
+      "required": true
+    },
+    "thumbnail_image": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -32,22 +37,22 @@
         "files"
       ]
     },
+    "open_for_visitor": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
     "buildings_childs": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::building.building",
       "mappedBy": "telkom_corpu_area_parent"
     },
-    "bookable_status": {
-      "type": "boolean",
-      "required": false,
-      "default": false
-    },
-    "camera_pov": {
-      "type": "decimal",
-      "default": 0,
-      "min": 0,
-      "max": 1
+    "drone_views": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::drone-view.drone-view",
+      "mappedBy": "telkom_corpu_area_parent"
     }
   }
 }

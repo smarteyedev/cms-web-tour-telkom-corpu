@@ -9,8 +9,10 @@
     "target_type": {
       "type": "enumeration",
       "enum": [
+        "FACILITY",
         "BUILDING",
-        "FACILITY"
+        "PANEL_GALLERY",
+        "PANEL_NAVIGATION"
       ]
     },
     "building_target": {

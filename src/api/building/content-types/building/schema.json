@@ -17,11 +17,13 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
-    },
-    "description": {
-      "type": "text",
+      "targetField": "name",
       "required": true
+    },
+    "category_functionality": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     },
     "telkom_corpu_area_parent": {
       "type": "relation",
@@ -29,12 +31,33 @@
       "target": "api::telkom-corpu-area.telkom-corpu-area",
       "inversedBy": "buildings_childs"
     },
-    "category_functionality": {
+    "facilities_childs": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
+      "relation": "oneToMany",
+      "target": "api::facility.facility",
+      "mappedBy": "building_parent"
     },
-    "maps_photo": {
+    "thumbnail_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "thumbnail_name": {
+      "type": "string",
+      "required": true
+    },
+    "maps_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description_image": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -50,22 +73,11 @@
         "images"
       ]
     },
-    "facilities_childs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::facility.facility",
-      "mappedBy": "building_parent"
-    },
-    "camera_pov": {
+    "first_camera_pov": {
       "type": "decimal",
       "default": 0,
       "min": 0,
       "max": 1
-    },
-    "content_photos": {
-      "type": "component",
-      "component": "asset.content-photo",
-      "repeatable": true
     },
     "navigations": {
       "type": "component",

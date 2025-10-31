@@ -1,15 +1,11 @@
 {
   "collectionName": "components_asset_content_photos",
   "info": {
-    "displayName": "Content Photo",
+    "displayName": "Gallery Image",
     "icon": "picture"
   },
   "options": {},
   "attributes": {
-    "photo_title": {
-      "type": "string",
-      "required": true
-    },
     "content_images": {
       "type": "media",
       "multiple": true,
@@ -17,10 +13,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "content_description": {
-      "type": "text",
-      "required": true
     },
     "hotspot_configuration": {
       "type": "component",

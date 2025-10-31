@@ -3,18 +3,16 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface AssetContentPhoto extends Struct.ComponentSchema {
   collectionName: 'components_asset_content_photos';
   info: {
-    displayName: 'Content Photo';
+    displayName: 'Gallery Image';
     icon: 'picture';
   };
   attributes: {
-    content_description: Schema.Attribute.Text & Schema.Attribute.Required;
     content_images: Schema.Attribute.Media<'images', true> &
       Schema.Attribute.Required;
     hotspot_configuration: Schema.Attribute.Component<
       'transform.hotspot-position',
       false
     >;
-    photo_title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -49,7 +47,9 @@ export interface AssetNavigation extends Struct.ComponentSchema {
       'transform.hotspot-position',
       false
     >;
-    target_type: Schema.Attribute.Enumeration<['BUILDING', 'FACILITY']>;
+    target_type: Schema.Attribute.Enumeration<
+      ['FACILITY', 'BUILDING', 'PANEL_GALLERY', 'PANEL_NAVIGATION']
+    >;
   };
 }
 
