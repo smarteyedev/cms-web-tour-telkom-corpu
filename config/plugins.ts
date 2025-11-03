@@ -9,4 +9,17 @@ export default ({ env }) => ({
             // breakpoints: {},
         },
     },
+
+    graphql: {
+        config: {
+            endpoint: '/graphql',
+            shadowCRUD: true,       // otomatis buat schema dari content-type
+            playgroundAlways: true, // aktifkan GraphQL Playground
+            defaultLimit: 25,
+            maxLimit: 100,
+            apolloServer: {
+                introspection: true,
+            },
+        },
+    },
 });

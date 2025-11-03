@@ -15,16 +15,6 @@
       "type": "string",
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true
-    },
-    "category_functionality": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
     "telkom_corpu_area_parent": {
       "type": "relation",
       "relation": "manyToOne",
@@ -36,18 +26,6 @@
       "relation": "oneToMany",
       "target": "api::facility.facility",
       "mappedBy": "building_parent"
-    },
-    "thumbnail_image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "thumbnail_name": {
-      "type": "string",
-      "required": true
     },
     "maps_image": {
       "type": "media",

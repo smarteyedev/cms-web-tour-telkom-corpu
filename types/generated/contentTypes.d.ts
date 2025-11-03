@@ -386,10 +386,6 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
   attributes: {
     background_360_image: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
-    category_functionality: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::category.category'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -418,14 +414,10 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     navigations: Schema.Attribute.Component<'asset.navigation', true>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     telkom_corpu_area_parent: Schema.Attribute.Relation<
       'manyToOne',
       'api::telkom-corpu-area.telkom-corpu-area'
     >;
-    thumbnail_image: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required;
-    thumbnail_name: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -497,7 +489,6 @@ export interface ApiDroneViewDroneView extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     navigations: Schema.Attribute.Component<'asset.navigation', true>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     telkom_corpu_area_parent: Schema.Attribute.Relation<
       'manyToOne',
       'api::telkom-corpu-area.telkom-corpu-area'
@@ -534,8 +525,9 @@ export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    facility_detail_image: Schema.Attribute.Media<'images'>;
+    description_text: Schema.Attribute.Text & Schema.Attribute.Required;
+    facility_detail_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     first_camera_pov: Schema.Attribute.Decimal &
       Schema.Attribute.SetMinMax<
         {
@@ -555,9 +547,9 @@ export interface ApiFacilityFacility extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     navigations: Schema.Attribute.Component<'asset.navigation', true>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    thumbnail_image: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required;
+    show_on_menu_panel: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    thumbnail_image: Schema.Attribute.Media<'images'>;
     thumbnail_name: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -599,7 +591,6 @@ export interface ApiTelkomCorpuAreaTelkomCorpuArea
     open_for_visitor: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     thumbnail_image: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     thumbnail_name: Schema.Attribute.String & Schema.Attribute.Required;

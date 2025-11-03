@@ -15,11 +15,6 @@
       "type": "string",
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true
-    },
     "telkom_corpu_area_parent": {
       "type": "relation",
       "relation": "manyToOne",
