@@ -478,7 +478,8 @@ export interface ApiDroneViewDroneView extends Struct.CollectionTypeSchema {
           min: 0;
         },
         number
-      >;
+      > &
+      Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
