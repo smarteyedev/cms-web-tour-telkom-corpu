@@ -1,30 +1,43 @@
 import path from 'path';
 
 export default ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const clientFromEnv = env('DATABASE_CLIENT', 'mysql').toLowerCase();
+  const client = ['mysql', 'sqlite'].includes(clientFromEnv) ? clientFromEnv : 'mysql';
 
-  const connections = {
+  const connections: Record<string, any> = {
     mysql: {
       connection: {
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 3306),
+        host: env('DATABASE_HOST', '127.0.0.1'),
+        port: env.int('DATABASE_PORT', 3307),
         database: env('DATABASE_NAME', 'db_corpu_tour360'),
         user: env('DATABASE_USERNAME', 'root'),
         password: env('DATABASE_PASSWORD', ''),
-        ssl: env.bool('DATABASE_SSL', false) && {
-          key: env('DATABASE_SSL_KEY', undefined),
-          cert: env('DATABASE_SSL_CERT', undefined),
-          ca: env('DATABASE_SSL_CA', undefined),
-          capath: env('DATABASE_SSL_CAPATH', undefined),
-          cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
-        },
+        // aktifkan SSL hanya jika DATABASE_SSL=true
+        ssl: env.bool('DATABASE_SSL', false)
+          ? {
+            key: env('DATABASE_SSL_KEY', undefined),
+            cert: env('DATABASE_SSL_CERT', undefined),
+            ca: env('DATABASE_SSL_CA', undefined),
+            capath: env('DATABASE_SSL_CAPATH', undefined),
+            cipher: env('DATABASE_SSL_CIPHER', undefined),
+            rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+          }
+          : false,
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+      pool: {
+        min: env.int('DATABASE_POOL_MIN', 2),
+        max: env.int('DATABASE_POOL_MAX', 10),
+      },
     },
+
     sqlite: {
       connection: {
-        filename: path.join(__dirname, '..', '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+        filename: path.join(
+          __dirname,
+          '..',
+          '..',
+          env('DATABASE_FILENAME', '.tmp/data.db')
+        ),
       },
       useNullAsDefault: true,
     },
