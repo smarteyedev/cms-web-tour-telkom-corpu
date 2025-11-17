@@ -48,7 +48,7 @@ export interface AssetNavigation extends Struct.ComponentSchema {
       false
     >;
     target_type: Schema.Attribute.Enumeration<
-      ['FACILITY', 'BUILDING', 'PANEL_GALLERY', 'PANEL_NAVIGATION']
+      ['FACILITY', 'BUILDING', 'PANEL_NAVIGATION']
     >;
   };
 }
